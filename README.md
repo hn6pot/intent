@@ -2,6 +2,10 @@
 
 A Claude Code mod (early-access mods API, which may change). French version: [README.fr.md](README.fr.md).
 
+![intent: from the side pane, "Open the review" opens the review page, its intentions, and an answer to "What's happening here?" under the code](docs/demo/intent.gif)
+
+*A mock with a fake repo ([source](docs/demo/demo.html)).*
+
 A "Review" explains what the current branch brings, with the intentions taken from the conversation (why each change was made, not only what changed). It is read on a **review page** with two tabs, **Story** (the intentions, each with its files and hunks) and **Files** (the full diff, file by file). The side pane is its remote, kept compact: the folder · branch picker on top (only when the session works in several folders), the status line with the **Open the review** button (opens the page in the default browser), the short summary, the intentions, the number of files (they are on the page), and for the answers only how many are under way and the first line of the last one that came. While the shown folder's review updates, the pane shows only "Updating the review…", with nothing to press, until it is done. When the page is down (after a reload of the mod, or once its server stopped or did not start), **Open the review** starts it again, shows "Opening the review…" meanwhile, and opens it once ready (10 s at most, else the pane says it did not start). The review is regenerated at the end of a main-loop turn, only when the diff changed and the pane or the page is open; a failed review is retried at the next turn end even without a change. `/intent` reopens the pane and catches up the reviews left behind while it was closed.
 
 ## Questions go straight to the model
