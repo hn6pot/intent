@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <title>Revue</title>
+  <script>
+    // Every file of the server needs the token: the stylesheet, the app and the modules it imports get it here.
+    (function () {
+      var query = '?t=' + encodeURIComponent(new URLSearchParams(location.search).get('t') || '')
+      var link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = 'style.css' + query
+      link.setAttribute('blocking', 'render')
+      document.head.appendChild(link)
+      var map = document.createElement('script')
+      map.type = 'importmap'
+      map.textContent = JSON.stringify({ imports: {
+        './render.js': './render.js' + query, './answers.js': './answers.js' + query, './escape.js': './escape.js' + query,
+        './texts.js': './texts.js' + query, './select.js': './select.js' + query,
+      } })
+      document.head.appendChild(map)
+      var app = document.createElement('script')
+      app.type = 'module'
+      app.src = 'app.js' + query
+      document.head.appendChild(app)
+    })()
+  </script>
+</head>
+<body>
+  <header id="top" class="top"></header>
+  <div id="shell" class="shell">
+    <aside id="sources" class="sources" hidden></aside>
+    <main id="main" class="main" role="tabpanel"></main>
+  </div>
+  <button id="explain" type="button" class="explain button button-primary writes" hidden></button>
+  <footer id="ask" class="ask writes" hidden>
+    <form id="ask-form" class="ask-form">
+      <label id="ask-label" class="visually-hidden" for="ask-text"></label>
+      <input id="ask-text" type="text" autocomplete="off" spellcheck="true">
+      <button id="ask-send" type="submit" class="button button-primary"></button>
+    </form>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "intent",
+  "owner": { "name": "hn6pot" },
+  "metadata": { "description": "Clear code review for Claude Code: the why behind each change, beside the conversation" },
+  "plugins": [
+    { "name": "intent", "source": "./", "description": "Clear code review: the why behind each change, beside the conversation" }
+  ]
+}

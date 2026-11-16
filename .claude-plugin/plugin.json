@@ -1,0 +1,21 @@
+{
+  "name": "intent",
+  "version": "0.1.0",
+  "description": "Clear code review: the why behind each change, beside the conversation",
+  "author": {
+    "name": "hn6pot"
+  },
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "language": {
+      "type": "string",
+      "title": "Language",
+      "description": "Language of the pane, the questions sent to Claude and the model's explanations: en (English) or fr (French).",
+      "options": [
+        "en",
+        "fr"
+      ],
+      "default": "en"
+    }
+  }
+}
