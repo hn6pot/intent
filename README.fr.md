@@ -2,6 +2,10 @@
 
 Un mod Claude Code (API des mods en accès anticipé, qui peut changer). Version anglaise : [README.md](README.md).
 
+![intent : depuis le panneau, « Open the review » ouvre la page de revue, ses intentions, et une réponse à « What's happening here? » sous le code](docs/demo/intent.gif)
+
+*Une maquette avec un faux dépôt ([source](docs/demo/demo.html)).*
+
 Une « revue » explique ce qu'apporte la branche courante, avec les intentions tirées de la conversation (pourquoi chaque changement a été fait, pas seulement ce qui a changé). Elle se lit sur une **page de revue** à deux onglets, **Histoire** (les intentions, chacune avec ses fichiers et ses hunks) et **Fichiers** (le diff complet, fichier par fichier). Le panneau latéral en est la télécommande, gardée compacte : le choix dossier · branche en haut (seulement quand la conversation travaille dans plusieurs dossiers), la ligne d'état avec le bouton **Ouvrir la revue** (ouvre la page dans le navigateur par défaut), le résumé court, les intentions, le nombre de fichiers (ils sont sur la page), et pour les réponses seulement combien sont en cours et la première ligne de la dernière arrivée. Pendant que la revue du dossier affiché se met à jour, le panneau n'affiche que « Mise à jour de la revue… », sans rien à appuyer, jusqu'à la fin. Quand la page est tombée (après un rechargement du mod, ou quand son serveur s'est arrêté ou n'a pas démarré), **Ouvrir la revue** la relance, affiche « Ouverture de la revue… » en attendant, et l'ouvre une fois prête (10 s au plus, sinon le panneau dit qu'elle n'a pas démarré). La revue est régénérée à la fin d'un tour de la boucle principale, seulement si le diff a changé et que le panneau ou la page est ouvert ; une revue en échec est retentée à la fin du tour suivant, même sans changement. `/intent` rouvre le panneau et rattrape les revues laissées de côté pendant qu'il était fermé.
 
 ## Les questions vont directement au modèle
